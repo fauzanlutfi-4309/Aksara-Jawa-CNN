@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aksara jawa</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+    <div class="header">
+        <h1>Deteksi Tulisan Tangan Aksara Jawa</h1>
+    </div>
+    <div class="Box">
+    </div>
+    <div class="Box_2">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <form id="upload-file" method="post" enctype="multipart/form-data" action="{{ url_for('upload') }}" onsubmit="return validateForm()">
+                        <label for="imageUpload" class="custom-file-label">
+                            Pilih Gambar
+                        </label>
+                        <input type="file" name="file" id="imageUpload" class="custom-file-input" accept=".png, .jpg, .jpeg" onchange="previewImage(this)">
+    
+                        <div class="image-section" style="display:none;">
+                            <div class="img-preview">
+                                <div id="imagePreview">
+                                    <img id="uploadedImage" alt="Uploaded Image" style="max-width:100%;">
+                                </div>
+                            </div>
+                        </div>
+                        <button class='predict' type="submit" class="btn btn-primary" id="btn-predict">Deteksi!</button>
+                    </form>
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col text-center">
+                    <div class="loader" style="display:none;"></div>
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col text-center">
+                    <span id="result">{{ prediction_result }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
